@@ -2,35 +2,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSC OBS Scoreboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC Broadcast Graphics</title>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="scoreboard">
+<div id="scoreboard">
 
-  <div class="team home">
-    <span id="homeName">HOME</span>
-  </div>
+    <div class="team left">
+        <img id="homeLogo" src="assets/logos/default.png" alt="Home Logo">
+        <span id="homeName">HOME</span>
+    </div>
 
-  <div class="score">
-    <span id="homeScore">0</span>
-    <span class="dash">-</span>
-    <span id="awayScore">0</span>
-  </div>
+    <div class="center">
 
-  <div class="timer">
-    <div id="clock">00:00</div>
-    <div id="period">1ST HALF</div>
-  </div>
+        <div class="score">
+            <span id="homeScore">0</span>
 
-  <div class="team away">
-    <span id="awayName">AWAY</span>
-  </div>
+            <span class="dash">-</span>
 
+            <span id="awayScore">0</span>
+        </div>
+
+        <div class="clock">
+            <span id="period">1ST</span>
+
+            <span id="clock">00:00</span>
+
+            <span id="stoppage"></span>
+        </div>
+
+    </div>
+
+    <div class="team right">
+        <span id="awayName">AWAY</span>
+        <img id="awayLogo" src="assets/logos/default.png" alt="Away Logo">
+    </div>
+
+</div>
+
+<div id="goalBanner">
+    ⚽ GOAL!
 </div>
 
 <script src="overlay.js"></script>
