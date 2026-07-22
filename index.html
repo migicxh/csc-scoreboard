@@ -4,42 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSC Broadcast Graphics</title>
-
+    <title>CSC Broadcast Overlay</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="scoreboard">
 
-    <div class="team left">
-        <img id="homeLogo" src="assets/logos/default.png" alt="Home Logo">
-        <span id="homeName">HOME</span>
+    <div class="team home">
+        <img id="homeLogo" class="logo" src="https://placehold.co/48x48" alt="Home Logo">
+        <span id="homeName" class="team-name">HOME FC</span>
+        <span id="homeScore" class="score">0</span>
     </div>
 
     <div class="center">
-
-        <div class="score">
-            <span id="homeScore">0</span>
-
-            <span class="dash">-</span>
-
-            <span id="awayScore">0</span>
-        </div>
-
-        <div class="clock">
-            <span id="period">1ST</span>
-
-            <span id="clock">00:00</span>
-
-            <span id="stoppage"></span>
-        </div>
-
+        <div id="clock" class="clock">00:00</div>
+        <div id="period" class="period">1ST</div>
     </div>
 
-    <div class="team right">
-        <span id="awayName">AWAY</span>
-        <img id="awayLogo" src="assets/logos/default.png" alt="Away Logo">
+    <div class="team away">
+        <span id="awayScore" class="score">0</span>
+        <span id="awayName" class="team-name">AWAY FC</span>
+        <img id="awayLogo" class="logo" src="https://placehold.co/48x48" alt="Away Logo">
     </div>
 
 </div>
