@@ -1,22 +1,18 @@
 
-const DEFAULT_STATE = {
-    homeName: "HOME",
-    awayName: "AWAY",
+const channel = new BroadcastChannel("csc-scoreboard");
+
+const defaultState = {
+    homeName: "HOME FC",
+    awayName: "AWAY FC",
     homeScore: 0,
     awayScore: 0,
     period: "1ST",
     clock: "00:00",
-    stoppage: "",
-    homeLogo: "assets/logos/default.png",
-    awayLogo: "assets/logos/default.png"
+    homeLogo: "https://placehold.co/48x48",
+    awayLogo: "https://placehold.co/48x48"
 };
 
-const channel = new BroadcastChannel("csc-scoreboard");
-
-let state = {
-    ...DEFAULT_STATE,
-    ...JSON.parse(localStorage.getItem("csc-scoreboard") || "{}")
-};
+let state = JSON.parse(localStorage.getItem("scoreboardState")) || defaultState;
 
 function updateOverlay() {
     document.getElementById("homeName").textContent = state.homeName;
@@ -25,26 +21,25 @@ function updateOverlay() {
     document.getElementById("homeScore").textContent = state.homeScore;
     document.getElementById("awayScore").textContent = state.awayScore;
 
-    document.getElementById("period").textContent = state.period;
     document.getElementById("clock").textContent = state.clock;
-    document.getElementById("stoppage").textContent = state.stoppage;
+    document.getElementById("period").textContent = state.period;
 
     document.getElementById("homeLogo").src = state.homeLogo;
     document.getElementById("awayLogo").src = state.awayLogo;
 }
 
+updateOverlay();
+
 channel.onmessage = (event) => {
     state = event.data;
-    localStorage.setItem("csc-scoreboard", JSON.stringify(state));
+    localStorage.setItem("scoreboardState", JSON.stringify(state));
     updateOverlay();
 };
 
 window.addEventListener("storage", () => {
-    state = {
-        ...DEFAULT_STATE,
-        ...JSON.parse(localStorage.getItem("csc-scoreboard") || "{}")
-    };
-    updateOverlay();
+    const saved = localStorage.getItem("scoreboardState");
+    if (saved) {
+        state = JSON.parse(saved);
+        updateOverlay();
+    }
 });
-
-updateOverlay();
