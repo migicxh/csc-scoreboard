@@ -2,48 +2,35 @@
 const channel = new BroadcastChannel("csc-scoreboard");
 
 let timer = null;
+let seconds = 0;
 
-let state = JSON.parse(localStorage.getItem("csc-scoreboard")) || {
-    homeName: "HOME",
-    awayName: "AWAY",
+let state = {
+    homeName: "HOME FC",
+    awayName: "AWAY FC",
     homeScore: 0,
     awayScore: 0,
     period: "1ST",
-    seconds: 0,
     clock: "00:00",
-    stoppage: "",
-    homeLogo: "assets/logos/default.png",
-    awayLogo: "assets/logos/default.png"
+    homeLogo: "https://placehold.co/48x48",
+    awayLogo: "https://placehold.co/48x48"
 };
 
-function loadInputs() {
-    document.getElementById("homeName").value = state.homeName;
-    document.getElementById("awayName").value = state.awayName;
-    document.getElementById("period").value = state.period;
-    document.getElementById("clock").value = state.clock;
-}
-
 function formatClock() {
-    const minutes = Math.floor(state.seconds / 60);
-    const seconds = state.seconds % 60;
-
-    state.clock =
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(seconds).padStart(2, "0");
-
-    document.getElementById("clock").value = state.clock;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
 function sendState() {
-    localStorage.setItem("csc-scoreboard", JSON.stringify(state));
     channel.postMessage(state);
+    localStorage.setItem("scoreboardState", JSON.stringify(state));
 }
 
 function updateOverlay() {
-    state.homeName = document.getElementById("homeName").value || "HOME";
-    state.awayName = document.getElementById("awayName").value || "AWAY";
-    state.period = document.getElementById("period").value;
+    state.homeName = document.getElementById("homeNameInput").value;
+    state.awayName = document.getElementById("awayNameInput").value;
+    state.period = document.getElementById("periodInput").value;
+    state.clock = document.getElementById("clockInput").value;
 
     sendState();
 }
@@ -62,8 +49,11 @@ function startClock() {
     if (timer) return;
 
     timer = setInterval(() => {
-        state.seconds++;
-        formatClock();
+        seconds++;
+        state.clock = formatClock();
+
+        document.getElementById("clockInput").value = state.clock;
+
         sendState();
     }, 1000);
 }
@@ -75,32 +65,38 @@ function pauseClock() {
 
 function resetClock() {
     pauseClock();
-    state.seconds = 0;
-    formatClock();
+
+    seconds = 0;
+    state.clock = "00:00";
+
+    document.getElementById("clockInput").value = state.clock;
+
     sendState();
 }
 
 function resetMatch() {
     pauseClock();
 
+    seconds = 0;
+
     state = {
-        homeName: "HOME",
-        awayName: "AWAY",
+        homeName: "HOME FC",
+        awayName: "AWAY FC",
         homeScore: 0,
         awayScore: 0,
         period: "1ST",
-        seconds: 0,
         clock: "00:00",
-        stoppage: "",
-        homeLogo: "assets/logos/default.png",
-        awayLogo: "assets/logos/default.png"
+        homeLogo: "https://placehold.co/48x48",
+        awayLogo: "https://placehold.co/48x48"
     };
 
-    loadInputs();
-    formatClock();
+    document.getElementById("homeNameInput").value = state.homeName;
+    document.getElementById("awayNameInput").value = state.awayName;
+    document.getElementById("periodInput").value = state.period;
+    document.getElementById("clockInput").value = state.clock;
+
     sendState();
 }
 
-loadInputs();
-formatClock();
+// Initialize
 sendState();
