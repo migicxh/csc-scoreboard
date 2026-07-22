@@ -1,3 +1,4 @@
+
 const DEFAULT_STATE = {
     homeName: "HOME",
     awayName: "AWAY",
