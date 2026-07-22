@@ -5,64 +5,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CSC Scoreboard Control</title>
-<link rel="stylesheet" href="style.css">
 <style>
-body{background:#111;color:#fff;font-family:Arial;padding:20px}
-.row{display:flex;gap:20px;margin-bottom:15px;flex-wrap:wrap}
-.card{background:#222;padding:15px;border-radius:8px;min-width:280px}
+body{font-family:Arial;background:#111;color:#fff;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.box{background:#222;padding:15px;border-radius:8px}
 input,select,button{margin:4px;padding:8px}
-button{cursor:pointer}
+.display{font-size:24px;font-weight:bold;margin:8px 0}
+.cards{min-height:24px}
 </style>
 </head>
 <body>
-<h1>CSC Scoreboard Control Panel</h1>
+<h1>Scoreboard Control</h1>
 
-<div class="row">
-<div class="card">
-<h3>Home Team</h3>
-<input id="homeTeamName" placeholder="Home Team">
-<input id="homeLogo" placeholder="Logo URL">
+<div class="grid">
+<div class="box">
+<h3>Teams</h3>
+<input id="homeTeamName" placeholder="Home Team"><br>
+<input id="awayTeamName" placeholder="Away Team"><br>
+<input id="homeLogo" placeholder="Home Logo URL"><br>
+<input id="awayLogo" placeholder="Away Logo URL">
+<div id="presetTeams"></div>
 </div>
 
-<div class="card">
-<h3>Away Team</h3>
-<input id="awayTeamName" placeholder="Away Team">
-<input id="awayLogo" placeholder="Logo URL">
-</div>
-</div>
-
-<div class="row">
-<div class="card">
+<div class="box">
 <h3>Score</h3>
-<button onclick="scoreboardControl.homeGoal()">Home +</button>
-<button onclick="scoreboardControl.awayGoal()">Away +</button>
-<button onclick="scoreboardControl.homeMinus()">Home -</button>
-<button onclick="scoreboardControl.awayMinus()">Away -</button>
+<input id="homeScore" type="number" value="0">
+<input id="awayScore" type="number" value="0">
+<div id="scoreDisplay" class="display">0 : 0</div>
 </div>
 
-<div class="card">
-<h3>Cards</h3>
-<button onclick="scoreboardControl.homeYellow()">Home Yellow</button>
-<button onclick="scoreboardControl.homeRed()">Home Red</button>
-<button onclick="scoreboardControl.awayYellow()">Away Yellow</button>
-<button onclick="scoreboardControl.awayRed()">Away Red</button>
-</div>
-</div>
-
-<div class="row">
-<div class="card">
+<div class="box">
 <h3>Clock</h3>
+<input id="matchMinutes" type="number" value="0" min="0"> :
+<input id="matchSeconds" type="number" value="0" min="0" max="59"><br>
 <select id="matchPeriod">
 <option value="1">1st Half</option>
 <option value="2" selected>2nd Half</option>
-<option value="3">ET</option>
+<option value="3">Extra Time</option>
 </select><br>
 <input id="stoppageTime" type="number" value="0" min="0">
-<button onclick="scoreboardControl.startTimer()">Start</button>
-<button onclick="scoreboardControl.stopTimer()">Stop</button>
-<button onclick="scoreboardControl.resetTimer()">Reset</button>
+<div id="timerDisplay" class="display">00:00</div>
+</div>
+
+<div class="box">
+<h3>Cards</h3>
+Home Yellow <input id="homeYellow" type="number" value="0"><div id="homeYellowDisplay" class="cards"></div>
+Home Red <input id="homeRed" type="number" value="0"><div id="homeRedDisplay" class="cards"></div>
+Away Yellow <input id="awayYellow" type="number" value="0"><div id="awayYellowDisplay" class="cards"></div>
+Away Red <input id="awayRed" type="number" value="0"><div id="awayRedDisplay" class="cards"></div>
 </div>
 </div>
 
 <script src="control.js"></script>
 </body>
+</html>
