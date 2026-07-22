@@ -1,6 +1,3 @@
-
-// CSC Broadcast Graphics v1.0
-
 const DEFAULT_STATE = {
     homeName: "HOME",
     awayName: "AWAY",
@@ -40,5 +37,13 @@ channel.onmessage = (event) => {
     localStorage.setItem("csc-scoreboard", JSON.stringify(state));
     updateOverlay();
 };
+
+window.addEventListener("storage", () => {
+    state = {
+        ...DEFAULT_STATE,
+        ...JSON.parse(localStorage.getItem("csc-scoreboard") || "{}")
+    };
+    updateOverlay();
+});
 
 updateOverlay();
