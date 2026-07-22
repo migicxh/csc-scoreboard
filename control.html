@@ -1,0 +1,34 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSC Scoreboard Control</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background:#111;color:white;padding:30px;font-family:Arial;">
+
+<h1>CSC Scoreboard Control Panel</h1>
+
+<h2>Home Team</h2>
+<input id="homeName" placeholder="Home Team">
+
+<h2>Away Team</h2>
+<input id="awayName" placeholder="Away Team">
+
+<br><br>
+
+<button onclick="homeGoal()">Home Goal +</button>
+<button onclick="awayGoal()">Away Goal +</button>
+
+<br><br>
+
+<button onclick="startClock()">Start</button>
+<button onclick="pauseClock()">Pause</button>
+<button onclick="resetClock()">Reset</button>
+
+<script src="control.js"></script>
+
+</body>
+</html>
