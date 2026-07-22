@@ -1,20 +1,68 @@
 
-CSC Scoreboard Control Panel
-Home Team
-Home Team
- 
-Logo URL
-Away Team
-Away Team
- 
-Logo URL
-Score
-Home + Away + Home - Away -
-Cards
-Home Yellow Home Red Away Yellow Away Red
-Clock
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSC Scoreboard Control</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:#111;color:#fff;font-family:Arial;padding:20px}
+.row{display:flex;gap:20px;margin-bottom:15px;flex-wrap:wrap}
+.card{background:#222;padding:15px;border-radius:8px;min-width:280px}
+input,select,button{margin:4px;padding:8px}
+button{cursor:pointer}
+</style>
+</head>
+<body>
+<h1>CSC Scoreboard Control Panel</h1>
 
-2nd Half
+<div class="row">
+<div class="card">
+<h3>Home Team</h3>
+<input id="homeTeamName" placeholder="Home Team">
+<input id="homeLogo" placeholder="Logo URL">
+</div>
 
-0
- Start Stop Reset
+<div class="card">
+<h3>Away Team</h3>
+<input id="awayTeamName" placeholder="Away Team">
+<input id="awayLogo" placeholder="Logo URL">
+</div>
+</div>
+
+<div class="row">
+<div class="card">
+<h3>Score</h3>
+<button onclick="scoreboardControl.homeGoal()">Home +</button>
+<button onclick="scoreboardControl.awayGoal()">Away +</button>
+<button onclick="scoreboardControl.homeMinus()">Home -</button>
+<button onclick="scoreboardControl.awayMinus()">Away -</button>
+</div>
+
+<div class="card">
+<h3>Cards</h3>
+<button onclick="scoreboardControl.homeYellow()">Home Yellow</button>
+<button onclick="scoreboardControl.homeRed()">Home Red</button>
+<button onclick="scoreboardControl.awayYellow()">Away Yellow</button>
+<button onclick="scoreboardControl.awayRed()">Away Red</button>
+</div>
+</div>
+
+<div class="row">
+<div class="card">
+<h3>Clock</h3>
+<select id="matchPeriod">
+<option value="1">1st Half</option>
+<option value="2" selected>2nd Half</option>
+<option value="3">ET</option>
+</select><br>
+<input id="stoppageTime" type="number" value="0" min="0">
+<button onclick="scoreboardControl.startTimer()">Start</button>
+<button onclick="scoreboardControl.stopTimer()">Stop</button>
+<button onclick="scoreboardControl.resetTimer()">Reset</button>
+</div>
+</div>
+
+<script src="control.js"></script>
+</body>
