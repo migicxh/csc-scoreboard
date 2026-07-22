@@ -2,105 +2,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSC Broadcast Control v2</title>
-
-<style>
-body{
-    margin:0;
-    background:#111;
-    color:white;
-    font-family:Arial,sans-serif;
-}
-
-.container{
-    width:700px;
-    margin:30px auto;
-    background:#1d1d1d;
-    padding:25px;
-    border-radius:15px;
-}
-
-h1{
-    text-align:center;
-}
-
-input,select,button{
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    font-size:18px;
-    border:none;
-    border-radius:8px;
-}
-
-.row{
-    display:flex;
-    gap:10px;
-}
-
-.row button{
-    flex:1;
-}
-
-.timerButtons button{
-    font-weight:bold;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC Broadcast Control Panel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="container">
+<h1>CSC Broadcast Control Panel</h1>
 
-<h1>⚽ CSC Broadcast Graphics</h1>
+<div class="controls">
 
-<h2>Teams</h2>
+    <h2>Teams</h2>
 
-<input id="homeName" placeholder="Home Team">
+    <label>Home Team</label>
+    <input id="homeNameInput" type="text" value="HOME FC">
 
-<input id="awayName" placeholder="Away Team">
+    <label>Away Team</label>
+    <input id="awayNameInput" type="text" value="AWAY FC">
 
-<h2>Score</h2>
+    <h2>Score</h2>
 
-<div class="row">
-<button onclick="changeScore('home',-1)">➖ Home</button>
-<button onclick="changeScore('home',1)">➕ Home</button>
-</div>
+    <button onclick="changeScore('home',-1)">Home -</button>
+    <button onclick="changeScore('home',1)">Home +</button>
 
-<div class="row">
-<button onclick="changeScore('away',-1)">➖ Away</button>
-<button onclick="changeScore('away',1)">➕ Away</button>
-</div>
+    <button onclick="changeScore('away',-1)">Away -</button>
+    <button onclick="changeScore('away',1)">Away +</button>
 
-<h2>Match Period</h2>
+    <h2>Match</h2>
 
-<select id="period">
-<option>1ST</option>
-<option>2ND</option>
-<option>ET</option>
-<option>PENS</option>
-</select>
+    <label>Period</label>
+    <select id="periodInput">
+        <option>1ST</option>
+        <option>2ND</option>
+        <option>ET</option>
+        <option>PENS</option>
+    </select>
 
-<h2>Clock</h2>
+    <label>Clock</label>
+    <input id="clockInput" type="text" value="00:00">
 
-<input id="clock" value="00:00">
+    <div style="margin-top:20px;">
+        <button onclick="startClock()">▶ Start</button>
+        <button onclick="pauseClock()">⏸ Pause</button>
+        <button onclick="resetClock()">🔄 Reset Clock</button>
+    </div>
 
-<div class="row timerButtons">
-<button onclick="startClock()">▶ START</button>
-<button onclick="pauseClock()">⏸ PAUSE</button>
-<button onclick="resetClock()">🔄 RESET</button>
-</div>
-
-<button onclick="updateOverlay()">
-💾 Update Overlay
-</button>
-
-<button onclick="resetMatch()">
-🗑 Reset Match
-</button>
+    <div style="margin-top:20px;">
+        <button onclick="updateOverlay()">💾 Update Overlay</button>
+        <button onclick="resetMatch()">Reset Match</button>
+    </div>
 
 </div>
 
