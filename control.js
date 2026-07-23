@@ -5,6 +5,7 @@ let timer = null;
 let seconds = 0;
 
 let state = {
+    matchTitle: "HOURLY KNOCKOUT",
     homeName: "HOME FC",
     awayName: "AWAY FC",
     homeScore: 0,
@@ -13,6 +14,7 @@ let state = {
     clock: "00:00",
     homeLogo: "https://placehold.co/48x48",
     awayLogo: "https://placehold.co/48x48"
+};
 };
 
 function formatClock() {
