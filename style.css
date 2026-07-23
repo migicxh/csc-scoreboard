@@ -13,7 +13,7 @@ body {
 
 #scoreboard {
     position: absolute;
-    top: 25px;
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -24,14 +24,31 @@ body {
     width: 760px;
     height: 80px;
 
-    background: rgba(18,18,18,.92);
+    background: rgba(20, 20, 20, 0.92);
     border-radius: 18px;
+    padding: 0 25px;
 
     color: white;
 
-    padding: 0 25px;
-
     box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+#matchTitle {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: #1b5e20;
+    color: white;
+
+    padding: 6px 18px;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .team {
@@ -52,13 +69,12 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    object-fit: cover;
-    background: #333;
+    background: #444;
 }
 
 .team-name {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: bold;
     margin: 0 12px;
 }
 
@@ -90,7 +106,7 @@ body {
 
 #goalBanner {
     position: absolute;
-    top: 120px;
+    top: 140px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -98,7 +114,6 @@ body {
     color: white;
 
     padding: 12px 40px;
-
     border-radius: 12px;
 
     font-size: 26px;
