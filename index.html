@@ -4,36 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSC Broadcast Graphics V3</title>
+    <title>CSC Broadcast Overlay</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="scoreboard">
+<div id="overlay">
 
     <div id="matchTitle">HOURLY KNOCKOUT</div>
 
-    <div class="team home">
-        <img id="homeLogo" class="logo" src="https://placehold.co/48x48" alt="Home Logo">
-        <span id="homeName" class="team-name">HOME FC</span>
-        <span id="homeScore" class="score">0</span>
+    <div id="scoreboard">
+
+        <div class="team home">
+            <img id="homeLogo" class="logo" src="https://placehold.co/64x64" alt="Home Logo">
+
+            <div class="teamInfo">
+                <div id="homeName" class="teamName">HOME FC</div>
+            </div>
+
+            <div id="homeScore" class="scoreBox">0</div>
+        </div>
+
+        <div class="centerBox">
+            <div id="timer">08:00</div>
+            <div id="period">1ST</div>
+        </div>
+
+        <div class="team away">
+
+            <div id="awayScore" class="scoreBox">0</div>
+
+            <div class="teamInfo">
+                <div id="awayName" class="teamName">AWAY FC</div>
+            </div>
+
+            <img id="awayLogo" class="logo" src="https://placehold.co/64x64" alt="Away Logo">
+
+        </div>
+
     </div>
 
-    <div class="center">
-        <div id="clock" class="clock">00:00</div>
-        <div id="period" class="period">1ST</div>
+    <div id="goalBanner">
+        ⚽ GOAL!
     </div>
 
-    <div class="team away">
-        <span id="awayScore" class="score">0</span>
-        <span id="awayName" class="team-name">AWAY FC</span>
-        <img id="awayLogo" class="logo" src="https://placehold.co/48x48" alt="Away Logo">
-    </div>
-
-</div>
-
-<div id="goalBanner">
-    ⚽ GOAL!
 </div>
 
 <script src="overlay.js"></script>
