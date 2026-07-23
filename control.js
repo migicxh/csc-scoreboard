@@ -28,7 +28,7 @@ function sendState() {
     localStorage.setItem("scoreboardState", JSON.stringify(state));
 }
 
-unction updateOverlay() {
+function updateOverlay() {
     state.matchTitle = document.getElementById("matchTitleInput").value;
     state.homeName = document.getElementById("homeNameInput").value;
     state.period = document.getElementById("periodInput").value;
