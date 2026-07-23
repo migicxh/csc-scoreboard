@@ -1,113 +1,64 @@
 
-const channel = new BroadcastChannel("csc-scoreboard");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC Broadcast Control Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-let state = JSON.parse(localStorage.getItem("scoreboardState")) || {
-    matchTitle: "HOURLY KNOCKOUT",
-    homeName: "HOME FC",
-    awayName: "AWAY FC",
-    homeScore: 0,
-    awayScore: 0,
-    period: "1ST",
-    timer: "00:00",
-    homeLogo: "https://placehold.co/48x48",
-    awayLogo: "https://placehold.co/48x48"
-};
+<h1>CSC Broadcast Control Panel</h1>
 
-let clockInterval = null;
+<div class="controls">
 
-function sendState() {
-    localStorage.setItem("scoreboardState", JSON.stringify(state));
-    channel.postMessage(state);
-}
+    <h2>Teams</h2>
 
-function updateOverlay() {
-    state.matchTitle = document.getElementById("matchTitleInput").value;
-    state.homeName = document.getElementById("homeNameInput").value;
-    state.awayName = document.getElementById("awayNameInput").value;
-    state.period = document.getElementById("periodInput").value;
-    state.timer = document.getElementById("timerInput").value;
+    <label>Home Team</label>
+    <input id="homeNameInput" type="text" value="HOME FC">
 
-    sendState();
-}
+    <label>Away Team</label>
+    <input id="awayNameInput" type="text" value="AWAY FC">
 
-function changeScore(team, amount) {
-    if (team === "home") {
-        state.homeScore = Math.max(0, state.homeScore + amount);
-    } else {
-        state.awayScore = Math.max(0, state.awayScore + amount);
-    }
+    <h2>Score</h2>
 
-    sendState();
-}
+    <button onclick="changeScore('home',-1)">Home -</button>
+    <button onclick="changeScore('home',1)">Home +</button>
 
-function startClock() {
-    if (clockInterval) return;
+    <button onclick="changeScore('away',-1)">Away -</button>
+    <button onclick="changeScore('away',1)">Away +</button>
 
-    clockInterval = setInterval(() => {
-        let parts = state.timer.split(":");
-        let minutes = parseInt(parts[0], 10);
-        let seconds = parseInt(parts[1], 10);
+    <h2>Match</h2>
 
-        seconds++;
+    <label>Match Title</label>
+    <input id="matchTitleInput" type="text" value="HOURLY KNOCKOUT">
 
-        if (seconds >= 60) {
-            seconds = 0;
-            minutes++;
-        }
+    <label>Period</label>
+    <select id="periodInput">
+        <option>1ST</option>
+        <option>2ND</option>
+        <option>ET</option>
+        <option>PENS</option>
+    </select>
 
-        state.timer =
-            String(minutes).padStart(2, "0") +
-            ":" +
-            String(seconds).padStart(2, "0");
+    <label>Timer</label>
+    <input id="timerInput" type="text" value="00:00">
 
-        document.getElementById("timerInput").value = state.timer;
+    <div style="margin-top:20px;">
+        <button onclick="startClock()">▶ Start</button>
+        <button onclick="pauseClock()">⏸ Pause</button>
+        <button onclick="resetClock()">🔄 Reset Clock</button>
+    </div>
 
-        sendState();
-    }, 1000);
-}
+    <div style="margin-top:20px;">
+        <button onclick="updateOverlay()">💾 Update Overlay</button>
+        <button onclick="resetMatch()">Reset Match</button>
+    </div>
 
-function pauseClock() {
-    clearInterval(clockInterval);
-    clockInterval = null;
-}
+</div>
 
-function resetClock() {
-    pauseClock();
-    state.timer = "00:00";
-    document.getElementById("timerInput").value = state.timer;
-    sendState();
-}
+<script src="control.js"></script>
 
-function resetMatch() {
-    pauseClock();
-
-    state = {
-        matchTitle: "HOURLY KNOCKOUT",
-        homeName: "HOME FC",
-        awayName: "AWAY FC",
-        homeScore: 0,
-        awayScore: 0,
-        period: "1ST",
-        timer: "00:00",
-        homeLogo: "https://placehold.co/48x48",
-        awayLogo: "https://placehold.co/48x48"
-    };
-
-    document.getElementById("matchTitleInput").value = state.matchTitle;
-    document.getElementById("homeNameInput").value = state.homeName;
-    document.getElementById("awayNameInput").value = state.awayName;
-    document.getElementById("periodInput").value = state.period;
-    document.getElementById("timerInput").value = state.timer;
-
-    sendState();
-}
-
-window.onload = () => {
-    document.getElementById("matchTitleInput").value = state.matchTitle;
-    document.getElementById("homeNameInput").value = state.homeName;
-    document.getElementById("awayNameInput").value = state.awayName;
-    document.getElementById("periodInput").value = state.period;
-    document.getElementById("timerInput").value = state.timer;
-
-    sendState();
-};
+</body>
+</html>
