@@ -15,6 +15,8 @@ const defaultState = {
 let state = JSON.parse(localStorage.getItem("scoreboardState")) || defaultState;
 
 function updateOverlay() {
+    document.getElementById("matchTitle").textContent = state.matchTitle;
+    
     document.getElementById("homeName").textContent = state.homeName;
     document.getElementById("awayName").textContent = state.awayName;
 
