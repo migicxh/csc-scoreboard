@@ -24,12 +24,11 @@ body {
     width: 760px;
     height: 80px;
 
-    background: rgba(20, 20, 20, 0.92);
+    background: rgba(18,18,18,.92);
     border-radius: 18px;
     padding: 0 25px;
 
     color: white;
-
     box-shadow: 0 8px 20px rgba(0,0,0,.45);
 }
 
@@ -47,8 +46,8 @@ body {
 
     font-size: 15px;
     font-weight: bold;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    white-space: nowrap;
 }
 
 .team {
@@ -69,7 +68,8 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #444;
+    object-fit: cover;
+    background: #333;
 }
 
 .team-name {
@@ -95,12 +95,12 @@ body {
 .clock {
     font-size: 28px;
     font-weight: bold;
-    color: #ffd54a;
+    color: #FFD54A;
 }
 
 .period {
     font-size: 16px;
-    color: #ddd;
+    color: #DDD;
     margin-top: 4px;
 }
 
@@ -110,7 +110,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
 
-    background: #00c853;
+    background: #00C853;
     color: white;
 
     padding: 12px 40px;
