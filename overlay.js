@@ -2,6 +2,7 @@
 const channel = new BroadcastChannel("csc-scoreboard");
 
 const defaultState = {
+    matchTitle: "HOURLY KNOCKOUT",
     homeName: "HOME FC",
     awayName: "AWAY FC",
     homeScore: 0,
